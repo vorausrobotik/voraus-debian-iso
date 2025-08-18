@@ -63,12 +63,14 @@ lint = [
     "pexpect",
     "types-pexpect",
     "fabric",
+    "types-paramiko",
 ]
 test = [
     "voraus-debian-iso[test-template]",
     # Add additional testing dependencies here
     "pexpect",
     "fabric",
+    "paramiko",
 ]
 doc = [
     "voraus-debian-iso[doc-template]",

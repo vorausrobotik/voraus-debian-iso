@@ -43,6 +43,7 @@ dependencies = [
 # Syntax: <CLI command> = "<import name>.<module>:<object>"
 # For example:
 # voraus-runtime = "voraus_runtime.cli.main:app"
+voraus-runtime = "voraus_runtime.cli.main:app"
 
 [tool.setuptools.package-data]
 "*" = ["py.typed"]

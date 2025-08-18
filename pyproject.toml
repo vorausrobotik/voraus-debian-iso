@@ -60,10 +60,13 @@ dev = [
 lint = [
     "voraus-debian-iso[lint-template]",
     # Add additional linting dependencies here
+    "pexpect",
+    "types-pexpect",
 ]
 test = [
     "voraus-debian-iso[test-template]",
     # Add additional testing dependencies here
+    "pexpect",
 ]
 doc = [
     "voraus-debian-iso[doc-template]",

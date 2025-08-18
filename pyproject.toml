@@ -35,6 +35,7 @@ dependencies = [
     # Add additional runtime dependencies below this line
     "setuptools_scm",
     "typer",
+    "rich",
 ]
 
 # Add CLI entry points here

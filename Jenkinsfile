@@ -17,7 +17,9 @@ pipeline {
           -v /home/localuser/.cache/pip:/home/jenkins/.cache/pip:rw,z
           -v /home/localuser/.cache/uv:/home/jenkins/.cache/uv:rw,z
           -v /home/localuser/.sonar/cache:/home/jenkins/.sonar/cache:rw,z
-          '''
+          --device=/dev/kvm
+          --group-add 103
+          ''' // On all build agents, the kvm group has GID 103, but in the docker container, this is the _ssh group...
       additionalBuildArgs '--pull' // Always pull so that we ensure the correct version
     }
   }
@@ -71,10 +73,22 @@ pipeline {
     // `python -m build` produces a temporary directory within the project directory containing source files.
     // All other tools might analyze them, although they're not meant to and are gone moments after indexing.
     // This leads to all kinds of issues due to this race condition.
-    stage('Build package') {
-      steps {
-        script {
-          venv.executeCommand('tox run -e build')
+    stage('Build') {
+      parallel {
+        stage('Build package') {
+          steps {
+            script {
+              venv.executeCommand('tox run -e build')
+            }
+          }
+        }
+        stage('Build ISO') {
+          steps {
+            script {
+              venv.executeCommand('pip install .')
+              venv.executeCommand('voraus-runtime --log-level DEBUG build')
+            }
+          }
         }
       }
     }

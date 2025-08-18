@@ -2,6 +2,9 @@ FROM artifactory.vorausrobotik.com/docker/voraus-build-image:latest
 
 USER root
 
-# Install stuff you need, e.g., RUN apt-get install -y chromium
+RUN apt-get update && apt-get install -y \
+    libarchive-tools \
+    xorriso \
+    qemu-system-x86
 
 USER jenkins

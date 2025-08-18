@@ -63,12 +63,14 @@ lint = [
     "pexpect",
     "types-pexpect",
     "fabric",
+    "types-paramiko",
 ]
 test = [
     "voraus-runtime[test-template]",
     # Add additional testing dependencies here
     "pexpect",
     "fabric",
+    "paramiko",
 ]
 doc = [
     "voraus-runtime[doc-template]",

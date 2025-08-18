@@ -62,11 +62,13 @@ lint = [
     # Add additional linting dependencies here
     "pexpect",
     "types-pexpect",
+    "fabric",
 ]
 test = [
     "voraus-runtime[test-template]",
     # Add additional testing dependencies here
     "pexpect",
+    "fabric",
 ]
 doc = [
     "voraus-runtime[doc-template]",
@@ -229,6 +231,7 @@ module = [
     # Ignore packages that do not provide type hints here
     # For example, add "dash.*" to ignore all imports from Dash
     "sphinxawesome_theme.postprocess",
+    "fabric",
 ]
 ignore_missing_imports = true
 

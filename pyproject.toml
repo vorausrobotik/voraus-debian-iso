@@ -34,6 +34,7 @@ dependencies = [
     # End template-managed dependencies
     # Add additional runtime dependencies below this line
     "setuptools_scm",
+    "typer",
 ]
 
 # Add CLI entry points here

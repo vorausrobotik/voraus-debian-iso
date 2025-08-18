@@ -1,0 +1,26 @@
+name: Link to docs
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '\
+              You can check out the resulting documentation \
+              [here](https://jenkins.vorausrobotik.com/job/voraus-runtime/job/PR-${{github.event.number}}/Documentation) \
+              after the PR build finished successfully. </br></br> \
+              Your browser might have cached a previous version of the documentation, so make sure to force-reload it \
+              (`Ctrl+F5`, `Shift+F5`, or `Ctrl+Shift+R`, depending on your browser).'
+            })

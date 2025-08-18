@@ -60,10 +60,13 @@ dev = [
 lint = [
     "voraus-runtime[lint-template]",
     # Add additional linting dependencies here
+    "pexpect",
+    "types-pexpect",
 ]
 test = [
     "voraus-runtime[test-template]",
     # Add additional testing dependencies here
+    "pexpect",
 ]
 doc = [
     "voraus-runtime[doc-template]",

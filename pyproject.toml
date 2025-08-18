@@ -215,6 +215,9 @@ addopts = """
     --cov=voraus_runtime
     --cov-config=pyproject.toml
     --cov-report=
+    -s
+    -o log_cli=True
+    --log-cli-level=INFO
     """
 
 [tool.coverage.run]

@@ -17,6 +17,7 @@ pipeline {
           -v /home/localuser/.cache/pip:/home/jenkins/.cache/pip:rw,z
           -v /home/localuser/.cache/uv:/home/jenkins/.cache/uv:rw,z
           -v /home/localuser/.sonar/cache:/home/jenkins/.sonar/cache:rw,z
+          --device=/dev/kvm
           '''
       additionalBuildArgs '--pull' // Always pull so that we ensure the correct version
     }

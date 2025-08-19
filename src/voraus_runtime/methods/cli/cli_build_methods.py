@@ -21,20 +21,22 @@ from voraus_runtime.methods.shell import execute_command
 _logger = getLogger(__file__)
 
 
-def build_impl(debian_version: str, architecture: str, output_directory: Path) -> None:
+def build_impl(distro_name: str, distro_version: str, architecture: str, output_directory: Path) -> None:
     """CLI build implementation.
 
     Args:
-        debian_version: The debian version to use.
+        distro_name: The name of the distribution (e.g., "debian").
+        distro_version: The distro version to use.
         architecture: The architecture to use.
         output_directory: The directory where the output ISO file will be saved.
     """
     CACHE_DIR.mkdir(exist_ok=True, parents=True)
-    iso_path = _download_iso(architecture=architecture, version=debian_version)
+    iso_path = _download_iso(architecture=architecture, version=distro_version)
     _extract_iso(iso_path=iso_path, extracted_dir=EXTRACTED_DIR)
     _patch_extracted_iso(extracted_iso_dir=EXTRACTED_DIR)
     _repack_iso(
-        debian_version=debian_version,
+        distro_name=distro_name,
+        distro_version=distro_version,
         architecture=architecture,
         extracted_iso_dir=EXTRACTED_DIR,
         output_directory=output_directory,
@@ -97,9 +99,13 @@ def _configure_preseed(extracted_iso_dir: Path) -> None:
         file.write_text(file.read_text().replace("$KERNEL_PARAMS", kernel_params))
 
 
-def _repack_iso(debian_version: str, architecture: str, extracted_iso_dir: Path, output_directory: Path) -> Path:
+def _repack_iso(
+    distro_name: str, distro_version: str, architecture: str, extracted_iso_dir: Path, output_directory: Path
+) -> Path:
     version = get_version()
-    output_file_path = output_directory / f"voraus-runtime-{version}-debian-{debian_version}-{architecture}-netinst.iso"
+    output_file_path = (
+        output_directory / f"voraus-runtime-{version}-{distro_name}-{distro_version}-{architecture}-headless.iso"
+    )
     output_directory.mkdir(parents=True, exist_ok=True)
 
     _logger.info("Re-packing customized ISO")
@@ -110,7 +116,7 @@ def _repack_iso(debian_version: str, architecture: str, extracted_iso_dir: Path,
             "mkisofs",
             "-r",
             "-V",
-            f"Debian {debian_version} {architecture}",
+            f"{distro_name.capitalize()} {distro_version} {architecture}",
             "-o",
             str(output_file_path),
             "-J",

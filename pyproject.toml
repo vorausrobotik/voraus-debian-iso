@@ -236,7 +236,7 @@ partial_branches = ["pragma: no branch", "if not TYPE_CHECKING:"]
 directory = "reports/coverage_html"
 
 [tool.coverage.xml]
-output = "reports/coverage.xml"
+output = "reports/coverage-python.xml"
 
 [[tool.mypy.overrides]]
 module = [

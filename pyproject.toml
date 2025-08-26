@@ -43,6 +43,7 @@ dependencies = [
 # Syntax: <CLI command> = "<import name>.<module>:<object>"
 # For example:
 # voraus-debian-iso = "voraus_debian_iso.cli.main:app"
+voraus-debian-iso = "voraus_debian_iso.cli.main:app"
 
 [tool.setuptools.package-data]
 "*" = ["py.typed"]
@@ -51,6 +52,10 @@ dependencies = [
 # "voraus_debian_iso" = [
 #     "assets/**",  # Recursively adds all files in src/voraus_debian_iso/assets/** to the package
 # ]
+
+"voraus_debian_iso" = [
+    "data/**", # Recursively adds all files in src/voraus_debian_iso/data/** to the package
+]
 
 [project.optional-dependencies]
 dev = [

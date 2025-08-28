@@ -10,6 +10,8 @@ DATA_DIR = _PATH / "data"
 DOCKERFILE_DIR = _PATH / "dockerfiles"
 CACHE_DIR = Path("/tmp") / get_app_name() / "cache"
 EXTRACTED_DIR = CACHE_DIR / "extracted"
+DEFAULT_QEMU_DISK_FILE = CACHE_DIR / "qemu_disk.img"
+QEMU_PID_FILE = CACHE_DIR / "qemu.pid"
 
 DEFAULT_DEBIAN_VERSION = "13.0.0"
 DEFAULT_ARCHITECTURE = "amd64"
@@ -18,3 +20,10 @@ DOWNLOAD_URL_TEMPLATE = "https://cdimage.debian.org/debian-cd/13.0.0/amd64/iso-c
 
 
 MBR_FILE = CACHE_DIR / "isohdpfx.bin"
+
+QEMU_COMMON_ARGS = [
+    "qemu-system-x86_64",
+    "-enable-kvm",
+    "-m",
+    "2G",
+]

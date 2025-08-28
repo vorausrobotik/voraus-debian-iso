@@ -149,6 +149,7 @@ extend-exclude = ["log"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = [
+    "D102", # Missing docstring in public method
     "D103", # Missing docstring in public function
 ]
 

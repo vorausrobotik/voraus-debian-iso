@@ -3,7 +3,7 @@
 from logging import getLogger
 from subprocess import check_output
 
-_logger = getLogger(__file__)
+_logger = getLogger(__name__)
 
 
 def execute_command(command: list[str]) -> None:

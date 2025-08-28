@@ -14,7 +14,7 @@ from tenacity.wait import wait_fixed
 
 from voraus_debian_iso.constants import QEMU_COMMON_ARGS, QEMU_PID_FILE
 
-_logger = logging.getLogger(__file__)
+_logger = logging.getLogger(__name__)
 
 
 def get_ssh_connection() -> Generator[Connection, None, None]:

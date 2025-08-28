@@ -5,7 +5,7 @@ from typing import Any, Callable
 
 import typer
 
-_logger = logging.getLogger(__file__)
+_logger = logging.getLogger(__name__)
 
 
 def try_call_impl(function: Callable, *args: Any, **kwargs: Any) -> None:

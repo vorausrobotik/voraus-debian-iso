@@ -12,7 +12,8 @@ from tenacity import after_log, retry, retry_if_exception_type
 from tenacity.stop import stop_after_delay
 from tenacity.wait import wait_fixed
 
-from voraus_debian_iso.constants import QEMU_COMMON_ARGS, QEMU_PID_FILE
+from voraus_debian_iso.constants import QEMU_PID_FILE
+from voraus_debian_iso.methods.cli.cli_common_methods import get_qemu_common_args
 
 _logger = logging.getLogger(__name__)
 
@@ -59,7 +60,7 @@ def start_impl(disk_file: Path, gui: bool = False) -> None:
 
     _logger.info(f"Starting QEMU VM with disk file {disk_file}.")
     start_time = time.time()
-    qemu_command = QEMU_COMMON_ARGS + [
+    qemu_command = get_qemu_common_args() + [
         "-pidfile",
         str(QEMU_PID_FILE),
         "-drive",

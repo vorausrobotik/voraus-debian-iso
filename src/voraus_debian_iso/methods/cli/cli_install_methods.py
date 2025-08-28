@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pexpect
 
-from voraus_debian_iso.constants import QEMU_COMMON_ARGS
+from voraus_debian_iso.methods.cli.cli_common_methods import get_qemu_common_args
 from voraus_debian_iso.methods.shell import execute_command
 
 _logger = logging.getLogger(__name__)
@@ -27,7 +27,7 @@ def install_impl(iso_file: Path, disk_file: Path) -> None:
     _logger.info(f"Creating disk file {disk_file}...")
     execute_command(["qemu-img", "create", "-f", "qcow2", str(disk_file), "5G"])
 
-    qemu_command = QEMU_COMMON_ARGS + [
+    qemu_command = get_qemu_common_args() + [
         "-drive",
         f"file={disk_file},format=qcow2",
         "-nographic",

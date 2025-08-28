@@ -5,7 +5,7 @@ import logging
 from voraus_debian_iso.constants import QEMU_PID_FILE
 from voraus_debian_iso.methods.shell import execute_command
 
-_logger = logging.getLogger(__file__)
+_logger = logging.getLogger(__name__)
 
 
 def stop_impl() -> None:

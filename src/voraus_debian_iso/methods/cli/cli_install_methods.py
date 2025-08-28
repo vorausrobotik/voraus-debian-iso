@@ -9,7 +9,7 @@ import pexpect
 from voraus_debian_iso.constants import QEMU_COMMON_ARGS
 from voraus_debian_iso.methods.shell import execute_command
 
-_logger = logging.getLogger(__file__)
+_logger = logging.getLogger(__name__)
 
 
 def install_impl(iso_file: Path, disk_file: Path) -> None:

@@ -18,7 +18,7 @@ from voraus_debian_iso.constants import (
 )
 from voraus_debian_iso.methods.shell import execute_command
 
-_logger = getLogger(__file__)
+_logger = getLogger(__name__)
 
 
 def build_impl(debian_version: str, architecture: str, output_directory: Path) -> None:

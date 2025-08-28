@@ -37,6 +37,7 @@ dependencies = [
     "typer",
     "rich",
     "pexpect",
+    "fabric",
 ]
 
 # Add CLI entry points here
@@ -70,14 +71,12 @@ lint = [
     "voraus-debian-iso[lint-template]",
     # Add additional linting dependencies here
     "types-pexpect",
-    "fabric",
     "tenacity",
     "types-paramiko",
 ]
 test = [
     "voraus-debian-iso[test-template]",
     # Add additional testing dependencies here
-    "fabric",
     "paramiko",
     "tenacity",
 ]

@@ -39,6 +39,7 @@ dependencies = [
     "pexpect",
     "fabric",
     "tenacity",
+    "paramiko",
 ]
 
 # Add CLI entry points here
@@ -77,7 +78,6 @@ lint = [
 test = [
     "voraus-debian-iso[test-template]",
     # Add additional testing dependencies here
-    "paramiko",
 ]
 doc = [
     "voraus-debian-iso[doc-template]",

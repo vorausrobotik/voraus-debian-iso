@@ -216,6 +216,8 @@ addopts = """
     --cov=voraus_debian_iso
     --cov-config=pyproject.toml
     --cov-report=
+    -s
+    --log-cli-level=INFO
     """
 
 [tool.coverage.run]

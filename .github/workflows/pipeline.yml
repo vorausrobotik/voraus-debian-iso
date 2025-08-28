@@ -12,14 +12,11 @@ on:
       - main
   push:
     branches:
-      - 'main'
+      - "main"
     tags:
-      - '*'
+      - "*"
 
 jobs:
-  test:
-    uses: ./.github/workflows/test.yml
-    secrets: inherit
   lint:
     uses: ./.github/workflows/lint.yml
   docs:
@@ -27,6 +24,11 @@ jobs:
   build:
     uses: ./.github/workflows/build.yml
     secrets: inherit
+  test:
+    uses: ./.github/workflows/test.yml
+    secrets: inherit
+    needs:
+      - build
   publish:
     uses: ./.github/workflows/publish.yml
     secrets: inherit

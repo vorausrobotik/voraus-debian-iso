@@ -8,6 +8,7 @@ import typer
 
 from voraus_debian_iso.constants import DEFAULT_ARCHITECTURE, DEFAULT_DEBIAN_VERSION
 from voraus_debian_iso.methods.cli.cli_build_methods import build_impl
+from voraus_debian_iso.methods.cli.cli_common_methods import try_call_impl
 
 _logger = logging.getLogger(__name__)
 
@@ -23,10 +24,9 @@ def _cli_build(
     ] = DEFAULT_ARCHITECTURE,
     output_directory: Annotated[Path, typer.Option(help="The output directory")] = Path("./output/"),
 ) -> None:  # noqa: disable=D103
-    try:
-        build_impl(debian_version=debian_version, architecture=architecture, output_directory=output_directory)
-    except KeyboardInterrupt as error:
-        raise typer.Exit(0) from error
-    except Exception as error:
-        _logger.error(error)
-        raise typer.Exit(1) from error
+    try_call_impl(
+        function=build_impl,
+        debian_version=debian_version,
+        architecture=architecture,
+        output_directory=output_directory,
+    )

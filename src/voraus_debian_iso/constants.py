@@ -20,10 +20,3 @@ DOWNLOAD_URL_TEMPLATE = "https://cdimage.debian.org/debian-cd/13.0.0/amd64/iso-c
 
 
 MBR_FILE = CACHE_DIR / "isohdpfx.bin"
-
-QEMU_COMMON_ARGS = [
-    "qemu-system-x86_64",
-    "-enable-kvm",
-    "-m",
-    "2G",
-]

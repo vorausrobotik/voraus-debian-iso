@@ -82,6 +82,7 @@ test = [
 doc = [
     "voraus-debian-iso[doc-template]",
     # Add additional documentation dependencies below this line
+    "myst-parser==4.0.1",
 ]
 build = [
     "voraus-debian-iso[build-template]",

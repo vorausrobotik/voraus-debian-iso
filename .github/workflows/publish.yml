@@ -39,3 +39,35 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  publish-iso:
+    runs-on: ubuntu-latest
+    env:
+      DEPLOY_PATH: bypass-generic-public-production-cloud-local/voraus-debian-iso/
+      JFROG_CLI_BUILD_NAME: voraus-debian-iso/${{ github.ref_name }}
+      JFROG_CLI_BUILD_NUMBER: "1"
+    steps:
+      - uses: jfrog/setup-jfrog-cli@v4
+        env:
+          JF_URL: https://voraus.jfrog.io
+        with:
+          oidc-provider-name: voraus-github-organization
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: iso
+          path: output
+
+      - name: Publish ISO
+        run: |
+          jf rt u "output/*.iso" "$DEPLOY_PATH"
+
+      - name: Publish Build Info
+        run: |
+          jf rt build-publish

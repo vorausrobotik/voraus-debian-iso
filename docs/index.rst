@@ -1,4 +1,6 @@
-.. include:: ../README.rst
+.. include:: ../README.md
+   :parser: myst_parser.docutils_
+
 
 ########
 Contents
@@ -7,7 +9,7 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   get_started
+   development
    voraus_debian_iso
 
 

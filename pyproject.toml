@@ -74,6 +74,7 @@ lint = [
     # Add additional linting dependencies here
     "types-pexpect",
     "types-paramiko",
+    "myst-parser==4.0.1",
 ]
 test = [
     "voraus-debian-iso[test-template]",

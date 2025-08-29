@@ -1,5 +1,5 @@
 ***********
-Get started
+Development
 ***********
 
 In order to build the images, the following packages need to be installed on the system:
@@ -8,14 +8,16 @@ In order to build the images, the following packages need to be installed on the
   - ``qemu-system-x86``
 
 
-Installation
-############
+Setup
+#####
 
-Install the builder using pip:
+Create a virtual environment and install the builder using pip:
 
 .. code-block:: bash
 
-   pip install voraus-debian-iso
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install --upgrade pip tox && pip install -e ".[dev]"
 
 
 Basic Usage

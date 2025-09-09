@@ -18,8 +18,11 @@ from voraus_debian_iso.methods.cli.cli_common_methods import get_qemu_common_arg
 _logger = logging.getLogger(__name__)
 
 
-def get_ssh_connection() -> Generator[Connection, None, None]:
+def get_ssh_connection(username: str = "localuser") -> Generator[Connection, None, None]:
     """Establishes an SSH connection to the QEMU VM.
+
+    Args:
+        username: The username to use for the SSH connection.
 
     Yields:
         The SSH connection.
@@ -27,7 +30,7 @@ def get_ssh_connection() -> Generator[Connection, None, None]:
     _logger.info("Establishing SSH connection to the QEMU VM...")
     with Connection(
         host="localhost",
-        user="localuser",
+        user=username,
         port=2222,
         connect_kwargs={"password": "voraus"},
         connect_timeout=60,

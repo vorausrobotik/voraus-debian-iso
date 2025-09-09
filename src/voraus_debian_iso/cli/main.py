@@ -58,8 +58,9 @@ def _common(
 ) -> None:
     rich_handler = RichHandler()
     rich_handler.setFormatter(logging.Formatter("%(message)s"))
-    _logger.handlers = [rich_handler]
-    _logger.setLevel(log_level.value)
+    logger = logging.getLogger()
+    logger.handlers = [rich_handler]
+    logger.setLevel(log_level.value)
     _logger.info(f"Using {get_app_name()}@{get_app_version()}")
 
 

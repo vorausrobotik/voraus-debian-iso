@@ -16,7 +16,6 @@ QEMU_PID_FILE = CACHE_DIR / "qemu.pid"
 DEFAULT_DEBIAN_VERSION = "13.0.0"
 DEFAULT_ARCHITECTURE = "amd64"
 ISO_FILENAME_TEMPLATE = "debian-{version}-{architecture}-netinst.iso"
-DOWNLOAD_URL_TEMPLATE = "https://cdimage.debian.org/debian-cd/13.0.0/amd64/iso-cd/{file_name}"
 
 
 MBR_FILE = CACHE_DIR / "isohdpfx.bin"

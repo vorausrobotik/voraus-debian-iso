@@ -8,14 +8,7 @@ from urllib.request import urlretrieve
 
 from setuptools_scm import get_version
 
-from voraus_debian_iso.constants import (
-    CACHE_DIR,
-    DATA_DIR,
-    DOWNLOAD_URL_TEMPLATE,
-    EXTRACTED_DIR,
-    ISO_FILENAME_TEMPLATE,
-    MBR_FILE,
-)
+from voraus_debian_iso.constants import CACHE_DIR, DATA_DIR, EXTRACTED_DIR, ISO_FILENAME_TEMPLATE, MBR_FILE
 from voraus_debian_iso.methods.shell import execute_command
 
 _logger = getLogger(__name__)
@@ -46,11 +39,20 @@ def _download_iso(architecture: str, version: str) -> Path:
     file_path = CACHE_DIR / file_name
     if file_path.is_file():
         _logger.info(f"{file_path} exists, skipping download")
-    else:
-        download_url = DOWNLOAD_URL_TEMPLATE.format(architecture=architecture, file_name=file_name)
-        _logger.info(f"Downloading {download_url} to file {file_path}")
-        urlretrieve(download_url, file_path)
-    return file_path
+        return file_path
+
+    for download_url in [
+        f"https://cdimage.debian.org/debian-cd/{version}/{architecture}/iso-cd/{file_name}",
+        f"https://cdimage.debian.org/cdimage/archive/{version}/{architecture}/iso-cd/{file_name}",
+    ]:
+        try:
+            _logger.info(f"Attempting download {download_url} to file {file_path}")
+            urlretrieve(download_url, file_path)
+            return file_path
+        except Exception as e:  # pylint: disable=broad-except
+            _logger.error(f"Failed to download {download_url}: {e}")
+
+    raise RuntimeError(f"Failed to download ISO for version {version} and architecture {architecture}")
 
 
 def _extract_iso(iso_path: Path, extracted_dir: Path) -> None:

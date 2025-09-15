@@ -24,3 +24,6 @@ class TestISO:
     def test_root_ssh_access(self, dut: Connection) -> None:  # pylint: disable=unused-argument
         root_ssh_connection = next(get_ssh_connection(username="root"))
         assert root_ssh_connection.run("whoami").stdout.strip() == "root"
+
+    def test_timezone(self, dut: Connection) -> None:
+        assert dut.run("timedatectl show --property=Timezone --value").stdout.strip() == "Europe/Berlin"

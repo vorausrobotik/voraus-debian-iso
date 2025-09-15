@@ -41,6 +41,7 @@ def cli_runner_fixture() -> CliRunner:
 @pytest.fixture(scope="session", name="dut")
 def device_under_test_fixture(cli_runner: CliRunner) -> Generator[Connection, None, None]:
     images_path = Path(__file__).parent.parent / "output"
+    cli_runner.invoke(app, ["build", "--output-directory", str(images_path)])
     iso_files = list(images_path.glob("*.iso"))
     match len(iso_files):
         case 0:

@@ -11,7 +11,7 @@ enabling fully automated headless installations without user interaction.
 
 # Installation
 
-1) Download the generated ISO from our [Artifactory].
+1) Download the latest ISO from our [Artifactory].
 2) Create a bootable USB stick (e.g. with [Etcher], [Rufus] or via [command line]).
 3) Plug in the USB stick into the IPC.
 4) (Re)boot it and enter the boot menu (vendor specific, usually done by pressing

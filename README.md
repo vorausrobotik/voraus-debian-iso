@@ -42,6 +42,6 @@ For additional information, please refer to the [official documentation].
 [Etcher]: https://github.com/balena-io/etcher
 [Rufus]: https://rufus.ie/
 [command line]: https://www.debian.org/releases/trixie/amd64/ch04s03.en.html
-[release page]: https://github.com/vorausrobotik/voraus-debian-iso/releases
+[releases page]: https://github.com/vorausrobotik/voraus-debian-iso/releases
 [official documentation]: https://vorausrobotik.github.io/voraus-debian-iso/
 [IPC Ansible roles]: https://github.com/vorausrobotik/voraus-ipc-tools-ansible/

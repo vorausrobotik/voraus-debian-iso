@@ -27,3 +27,7 @@ class TestISO:
 
     def test_timezone(self, dut: Connection) -> None:
         assert dut.run("timedatectl show --property=Timezone --value").stdout.strip() == "Europe/Berlin"
+
+    def test_sudo_available(self, dut: Connection) -> None:  # pylint: disable=unused-argument
+        root_ssh_connection = next(get_ssh_connection(username="root"))
+        assert root_ssh_connection.run("sudo --validate").ok

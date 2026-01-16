@@ -13,7 +13,7 @@ EXTRACTED_DIR = CACHE_DIR / "extracted"
 DEFAULT_QEMU_DISK_FILE = CACHE_DIR / "qemu_disk.img"
 QEMU_PID_FILE = CACHE_DIR / "qemu.pid"
 
-DEFAULT_DEBIAN_VERSION = "13.2.0"
+DEFAULT_DEBIAN_VERSION = "13.3.0"
 DEFAULT_ARCHITECTURE = "amd64"
 ISO_FILENAME_TEMPLATE = "debian-{version}-{architecture}-netinst.iso"
 

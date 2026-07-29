@@ -1,0 +1,52 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+
+  // The org baseline (config:best-practices plus the org defaults) is applied by the self-hosted global config,
+  // see https://github.com/vorausrobotik/voraus-iac/blob/main/argocd/apps/renovate/README.md, so it must not be
+  // listed here. Only repository specific configuration belongs in this file.
+
+  // The pinned linting and testing dependencies in pyproject.toml are managed by the project template
+  // ("Do not modify them manually to prevent conflicts during template updates"), so Renovate stays out of them.
+  pep621: {
+    enabled: false,
+  },
+
+  customManagers: [
+    {
+      // The Debian snapshot the system is installed from. Newer timestamps are discovered via the dated tags of
+      // the official debian container image (trixie-YYYYMMDD), because snapshot.debian.org itself does not
+      // publish a machine readable index of its snapshots.
+      customType: 'regex',
+      description: 'Debian snapshot the preseed installs from',
+      managerFilePatterns: ['/^src/voraus_debian_iso/data/preseed/preseed\\.cfg$/'],
+      matchStrings: ['mirror/http/directory string /archive/debian/(?<currentValue>\\d{8})T000000Z'],
+      depNameTemplate: 'debian-snapshot',
+      packageNameTemplate: 'debian',
+      datasourceTemplate: 'docker',
+      extractVersionTemplate: '^trixie-(?<version>\\d{8})$',
+      versioningTemplate: 'loose',
+    },
+    {
+      // The Debian point release whose installer ISO is downloaded. Point releases are published as X.Y.0, so
+      // only the X.Y part is matched, which is what the container image tags provide (13.3, 13.6, ...).
+      customType: 'regex',
+      description: 'Debian point release used for the installer ISO',
+      managerFilePatterns: ['/^src/voraus_debian_iso/constants\\.py$/'],
+      matchStrings: ['DEFAULT_DEBIAN_VERSION = "(?<currentValue>\\d+\\.\\d+)\\.0"'],
+      depNameTemplate: 'debian',
+      datasourceTemplate: 'docker',
+      extractVersionTemplate: '^(?<version>\\d+\\.\\d+)$',
+      versioningTemplate: 'loose',
+    },
+  ],
+
+  packageRules: [
+    {
+      // Both have to be bumped together: the installer ISO and the archive it installs from have to be the same
+      // Debian release. Such a PR fails the integration tests until the versions they assert
+      // (tests/integration/test_iso.py) are updated as well - that failure is the intended signal.
+      matchDepNames: ['debian', 'debian-snapshot'],
+      groupName: 'Debian base',
+    },
+  ],
+}

@@ -24,7 +24,11 @@
       packageNameTemplate: 'debian',
       datasourceTemplate: 'docker',
       extractVersionTemplate: '^trixie-(?<version>\\d{8})$',
-      versioningTemplate: 'loose',
+      // The timestamp has to be split into its date components instead of being treated as one number ('loose'
+      // would make 20260121 a major version): Renovate discards updates whose major version increases by more
+      // than maxMajorIncrement (500 by default), so with 'loose' every snapshot more than ~500 days ahead is
+      // silently dropped and a year rollover blocks updates completely.
+      versioningTemplate: 'regex:^(?<major>\\d{4})(?<minor>\\d{2})(?<patch>\\d{2})$',
     },
     {
       // The Debian point release whose installer ISO is downloaded. Point releases are published as X.Y.0, so
@@ -47,6 +51,13 @@
       // (tests/integration/test_iso.py) are updated as well - that failure is the intended signal.
       matchDepNames: ['debian', 'debian-snapshot'],
       groupName: 'Debian base',
+      // Major updates are branched separately by default, which would split the group as soon as one of the two
+      // bumps its major version - a new Debian release for the point release, a new year for the snapshot.
+      separateMajorMinor: false,
+      // Neither value is an image reference that could carry a digest, so the org wide docker:pinDigests must not
+      // apply here. Its pinDigest update ends up in the same branch as the version bump and one of the two is
+      // then discarded ("Ignoring upgrade collision").
+      pinDigests: false,
     },
   ],
 }

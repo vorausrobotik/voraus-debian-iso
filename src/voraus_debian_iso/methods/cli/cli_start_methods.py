@@ -39,7 +39,8 @@ def get_ssh_connection(username: str = "localuser") -> Generator[Connection, Non
             retry=retry_if_exception_type((NoValidConnectionsError, SSHException, TimeoutError)),
             wait=wait_fixed(2),
             stop=stop_after_delay(120),
-            after=after_log(_logger, logging.DEBUG),
+            # tenacity>=9.1 annotates the logger with its own LoggerProtocol, which logging.Logger does not satisfy
+            after=after_log(_logger, logging.DEBUG),  # type: ignore[arg-type]
         )(connection.open)()
         yield connection
 

@@ -12,14 +12,18 @@ from voraus_debian_iso.methods.cli.cli_start_methods import get_ssh_connection
 class TestISO:
     """Contains all ISO tests."""
 
+    # The packages of the installed system come from the Debian mirror and not from the ISO, so its point release
+    # is whatever the mirror serves at installation time. Only the major release (trixie) is therefore asserted.
     def test_debian_version(self, dut: Connection) -> None:
-        assert dut.run("cat /etc/debian_version").stdout.strip() == "13.3"
+        assert dut.run("cat /etc/debian_version").stdout.strip().startswith("13.")
 
     def test_debian_kernel(self, dut: Connection) -> None:
-        assert dut.run("uname -r").stdout.strip() == "6.12.63+deb13-amd64"
+        kernel = dut.run("uname -r").stdout.strip()
+        assert kernel.startswith("6.12.")
+        assert kernel.endswith("+deb13-amd64")
 
     def test_python_version(self, dut: Connection) -> None:
-        assert dut.run("python3 --version").stdout.strip() == "Python 3.13.5"
+        assert dut.run("python3 --version").stdout.strip().startswith("Python 3.13.")
 
     def test_root_ssh_access(self, dut: Connection) -> None:  # pylint: disable=unused-argument
         root_ssh_connection = next(get_ssh_connection(username="root"))

@@ -50,10 +50,11 @@ jobs:
           fetch-tags: true
 
       - name: Install build dependencies
-        uses: awalsh128/cache-apt-pkgs-action@latest
-        with:
-          packages: libarchive-tools xorriso qemu-system-x86
-          version: 1.0
+        # apt-get update is mandatory: the package lists of the runner image are stale, so apt requests .deb
+        # versions that have already been removed from the mirrors, which fails with "404 Not Found".
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes libarchive-tools xorriso
 
       - uses: actions/setup-python@v5
         with:

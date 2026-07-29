@@ -55,8 +55,11 @@
       // bumps its major version - a new Debian release for the point release, a new year for the snapshot.
       separateMajorMinor: false,
       // Neither value is an image reference that could carry a digest, so the org wide docker:pinDigests must not
-      // apply here. Its pinDigest update ends up in the same branch as the version bump and one of the two is
-      // then discarded ("Ignoring upgrade collision").
+      // apply here. It makes Renovate resolve the digest of the extracted version, which for the snapshot is not
+      // a tag at all (20260713 instead of trixie-20260713), and every update whose digest lookup fails is
+      // discarded - the snapshot would get no update whatsoever. For the point release the version happens to be
+      // a valid tag, so there it only adds a pinDigest update that collides with the version bump in the shared
+      // branch ("Ignoring upgrade collision").
       pinDigests: false,
     },
   ],

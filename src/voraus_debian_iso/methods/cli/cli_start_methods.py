@@ -6,7 +6,7 @@ import time
 from pathlib import Path
 from typing import Generator
 
-from fabric import Connection
+from fabric import Config, Connection
 from paramiko.ssh_exception import NoValidConnectionsError, SSHException
 from tenacity import after_log, retry, retry_if_exception_type
 from tenacity.stop import stop_after_delay
@@ -34,6 +34,8 @@ def get_ssh_connection(username: str = "localuser") -> Generator[Connection, Non
         port=2222,
         connect_kwargs={"password": "voraus"},
         connect_timeout=60,
+        # Remote command output is only of interest to the caller, so it is not echoed to the local streams.
+        config=Config(overrides={"run": {"hide": True}}),
     ) as connection:
         retry(
             retry=retry_if_exception_type((NoValidConnectionsError, SSHException, TimeoutError)),

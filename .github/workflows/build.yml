@@ -12,7 +12,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.13
+          python-version: 3.14
 
       - name: Install tox
         run: python -m pip install --upgrade tox==4.23.2 tox-uv~=1.16.0
@@ -58,7 +58,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: "3.14"
 
       - name: Install package
         run: pip install .

@@ -125,7 +125,7 @@ doc-template = [
     "snowballstemmer==2.2.0",
 ]
 
-build-template = ["build[virtualenv]==1.2.2.post1"]
+build-template = ["build[virtualenv]==1.5.0"]
 
 ########################################
 # End of template-managed dependencies #

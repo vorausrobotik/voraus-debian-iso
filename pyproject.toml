@@ -99,7 +99,7 @@ build = [
 tox = ["tox==4.11.1"]
 lint-template = [
     "isort==6.0.0",
-    "black==25.1.0",
+    "black==26.5.1",
     "mypy==1.15.0",
     "pylint==3.3.4",
     "pytest==8.3.4",

@@ -45,7 +45,7 @@ jobs:
     env:
       DEPLOY_PATH: bypass-generic-public-production-cloud-local/voraus-debian-iso/
       JFROG_CLI_BUILD_NAME: voraus-debian-iso/${{ github.ref_name }}
-      JFROG_CLI_BUILD_NUMBER: "1"
+      JFROG_CLI_BUILD_NUMBER: '1'
     steps:
       - uses: jfrog/setup-jfrog-cli@5a4fbe1e30dbb570cc62d2513421c4b9bc3c9959 # v4
         env:

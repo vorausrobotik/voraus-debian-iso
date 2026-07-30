@@ -11,17 +11,17 @@ enabling fully automated headless installations without user interaction.
 
 # Installation
 
-1) Download the latest ISO from our [Artifactory].
-2) Create a bootable USB stick (e.g. with [Etcher], [Rufus] or via [command line]).
-3) Plug in the USB stick into the IPC.
-4) (Re)boot it and enter the boot menu (vendor specific, usually done by pressing
+1. Download the latest ISO from our [Artifactory].
+2. Create a bootable USB stick (e.g. with [Etcher], [Rufus] or via [command line]).
+3. Plug in the USB stick into the IPC.
+4. (Re)boot it and enter the boot menu (vendor specific, usually done by pressing
    <kbd>F2</kbd>, <kbd>F7</kbd>, <kbd>F12</kbd>, or <kbd>Del</kbd>).
-5) Choose the USB stick as boot source.
-6) Select `Automatic Headless Install` and press <kbd>⏎ Enter</kbd>. The installation process does not require any
+5. Choose the USB stick as boot source.
+6. Select `Automatic Headless Install` and press <kbd>⏎ Enter</kbd>. The installation process does not require any
    user interaction.
-7) Once the installation has finished, the system will power off automatically.
-8) Remove the USB stick and reboot the IPC.
-9) You're all set! For additional configuration (e.g. realtime computation), please refer to our [IPC Ansible roles].
+7. Once the installation has finished, the system will power off automatically.
+8. Remove the USB stick and reboot the IPC.
+9. You're all set! For additional configuration (e.g. realtime computation), please refer to our [IPC Ansible roles].
 
 <br />
 
@@ -36,7 +36,6 @@ For the changelog, please refer to the [releases page].
 For additional information, please refer to the [official documentation].
 
 <br />
-
 
 [Artifactory]: https://voraus.jfrog.io/artifactory/generic/voraus-debian-iso/
 [Etcher]: https://github.com/balena-io/etcher

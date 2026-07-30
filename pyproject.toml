@@ -112,7 +112,7 @@ lint-template = [
 test-template = [
     "pytest==8.3.4",
     "pytest-randomly==3.16.0",
-    "pytest-cov==6.0.0",
+    "pytest-cov==7.1.0",
     "coverage[toml]==7.6.11",
 ]
 doc-template = [

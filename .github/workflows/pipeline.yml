@@ -12,9 +12,9 @@ on:
       - main
   push:
     branches:
-      - "main"
+      - 'main'
     tags:
-      - "*"
+      - '*'
 
 jobs:
   lint:

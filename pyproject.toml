@@ -103,7 +103,7 @@ lint-template = [
     "mypy==1.15.0",
     "pylint==3.3.4",
     "pytest==8.3.4",
-    "doc8==1.1.2",
+    "doc8==2.0.0",
     "types-docutils",
     "types-setuptools",
     "jinja2==3.1.5",

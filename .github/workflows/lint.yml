@@ -11,6 +11,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: 24
+
+      # Runs before the tox environment is created, because Prettier walks the whole working tree and would
+      # otherwise descend into `.tox/`.
+      - name: Check formatting of non-Python files
+        run: npx --yes prettier@3.9.6 --check .
+
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
           python-version: 3.14

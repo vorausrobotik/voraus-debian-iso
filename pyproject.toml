@@ -106,7 +106,7 @@ lint-template = [
     "doc8==2.0.0",
     "types-docutils",
     "types-setuptools",
-    "jinja2==3.1.5",
+    "jinja2==3.1.6",
     "ruff==0.9.5",
 ]
 test-template = [
@@ -121,7 +121,7 @@ doc-template = [
     "sphinx-selective-exclude==1.0.3",
     "sphinx-autodoc-typehints==3.0.1",
     "pip-licenses==5.0.0",
-    "jinja2==3.1.5",
+    "jinja2==3.1.6",
     "snowballstemmer==2.2.0",
 ]
 

@@ -102,7 +102,7 @@ lint-template = [
     "black==25.1.0",
     "mypy==1.15.0",
     "pylint==4.0.8",
-    "pytest==8.3.4",
+    "pytest==9.0.3",
     "doc8==2.0.0",
     "types-docutils",
     "types-setuptools",
@@ -110,7 +110,7 @@ lint-template = [
     "ruff==0.9.5",
 ]
 test-template = [
-    "pytest==9.1.1",
+    "pytest==9.0.3",
     "pytest-randomly==3.16.0",
     "pytest-cov==6.0.0",
     "coverage[toml]==7.6.11",

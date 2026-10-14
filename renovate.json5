@@ -47,8 +47,9 @@
   packageRules: [
     {
       // Both have to be bumped together: the installer ISO and the archive it installs from have to be the same
-      // Debian release. Such a PR fails the integration tests until the versions they assert
-      // (tests/integration/test_iso.py) are updated as well - that failure is the intended signal.
+      // Debian release. The integration tests (tests/integration/test_iso.py) derive the expected Debian version
+      // from DEFAULT_DEBIAN_VERSION, but assert the kernel and Python versions of the snapshot literally. Such a PR
+      // fails until these are updated as well - that failure is the intended signal that the snapshot pin works.
       matchDepNames: ['debian', 'debian-snapshot'],
       groupName: 'Debian base',
       // Major updates are branched separately by default, which would split the group as soon as one of the two

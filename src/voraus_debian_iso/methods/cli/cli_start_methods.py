@@ -42,7 +42,7 @@ def get_ssh_connection(username: str = "localuser") -> Generator[Connection, Non
             wait=wait_fixed(2),
             stop=stop_after_delay(120),
             # tenacity>=9.1 annotates the logger with its own LoggerProtocol, which logging.Logger does not satisfy
-            after=after_log(_logger, logging.DEBUG),  # type: ignore[arg-type]
+            after=after_log(_logger, logging.DEBUG),
         )(connection.open)()
         yield connection
 

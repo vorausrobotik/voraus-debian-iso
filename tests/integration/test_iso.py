@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 from fabric import Connection
 
+from voraus_debian_iso.constants import DEFAULT_DEBIAN_VERSION
 from voraus_debian_iso.methods.cli.cli_start_methods import get_ssh_connection
 
 
@@ -29,10 +30,10 @@ class TestISO:
     """Contains all ISO tests."""
 
     def test_debian_version(self, dut: Connection) -> None:
-        assert dut.run("cat /etc/debian_version").stdout.strip() == "13.6"
+        assert dut.run("cat /etc/debian_version").stdout.strip() == DEFAULT_DEBIAN_VERSION.removesuffix(".0")
 
     def test_debian_kernel(self, dut: Connection) -> None:
-        assert dut.run("uname -r").stdout.strip() == "6.12.94+deb13-amd64"
+        assert dut.run("uname -r").stdout.strip() == "6.12.107+deb13-amd64"
 
     def test_python_version(self, dut: Connection) -> None:
         assert dut.run("python3 --version").stdout.strip() == "Python 3.13.5"

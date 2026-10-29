@@ -47,7 +47,7 @@ jobs:
       JFROG_CLI_BUILD_NAME: voraus-debian-iso/${{ github.ref_name }}
       JFROG_CLI_BUILD_NUMBER: '1'
     steps:
-      - uses: jfrog/setup-jfrog-cli@5a4fbe1e30dbb570cc62d2513421c4b9bc3c9959 # v4
+      - uses: jfrog/setup-jfrog-cli@6ed45ef1a24199bd4c94d3fd55a7e8cb7e45985d # v5
         env:
           JF_URL: https://voraus.jfrog.io
         with:
